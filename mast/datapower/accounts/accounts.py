@@ -17,27 +17,6 @@ from mast.datapower import datapower
 cli = commandr.Commandr()
 
 
-#~#~#~#~#~#~#~#
-# Users/Groups
-# ============
-#
-# These functions are meant to affect the users and groups on the
-# given appliances
-#
-# current commands
-# ----------------
-# add-group
-# del-group
-# add-user
-# del-user
-# change-password
-# force-change-password
-# list-rbm-fallback
-# add-rbm-fallback
-# del-rbm-fallback
-#
-
-
 @logged("mast.datapower.accounts")
 @cli.command('list-groups', category='users/groups')
 def list_groups(appliances=[], credentials=[],
@@ -46,10 +25,10 @@ def list_groups(appliances=[], credentials=[],
 a list of the groups common to all appliances"""
 
     logger = make_logger("mast.accounts")
-    logger.debug(
-        "Attempting to list user groups for {}".format(str(appliances)))
+
     check_hostname = not no_check_hostname
-    env = datapower.Environment(appliances, credentials, timeout, check_hostname=check_hostname)
+    env = datapower.Environment(
+        appliances, credentials, timeout, check_hostname=check_hostname)
 
     if web:
         return util.web_list_groups(env), util.render_history(env)
@@ -604,7 +583,6 @@ def flush_rbm_cache(appliances=[], credentials=[],
 #
 #~#~#~#~#~#~#~#
 
-@logged("mast.datapower.accounts")
 def get_data_file(f):
     _root = os.path.dirname(__file__)
     path = os.path.join(_root, "data", f)
@@ -637,4 +615,3 @@ if __name__ == '__main__':
         if "'NoneType' object has no attribute 'app'" in e:
             raise NotImplementedError(
                 "HTML formatted output is not supported on the CLI")
-

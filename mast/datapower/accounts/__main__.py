@@ -5,4 +5,3 @@ import sys
 sys.argv[0] = "mast-accounts"
 
 cli.Run()
-
