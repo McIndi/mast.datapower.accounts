@@ -24,12 +24,7 @@ setup(
             'accounts = mast.datapower.accounts:WebPlugin'
         ]
     },
-    data_files=[
-        ("mast/datapower/accounts/data", [
-            "./mast/datapower/accounts/docroot/plugin.js",
-            "./mast/datapower/accounts/docroot/plugin.css"
-        ])
-    ],
+    incude_package_data=True,
     long_description=read('README.md'),
     classifiers=[
         "Development Status :: 5 - Production/Stable",
