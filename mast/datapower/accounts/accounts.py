@@ -10,9 +10,12 @@ McIndi Solutions LLC
 =========================================================="""
 import os
 import commandr
+from mast.plugins.web import Plugin
+from mast.datapower import datapower
 from mast.logging import make_logger, logged
 import mast.plugin_utils.plugin_utils as util
-from mast.datapower import datapower
+from functools import partial, update_wrapper
+import mast.plugin_utils.plugin_functions as pf
 
 cli = commandr.Commandr()
 
@@ -65,13 +68,18 @@ def add_group(appliances=[], credentials=[],
 
 Arguments:
 
-* save_config - If specified the configuration on the appliances will be saved
+* save_config - If specified the configuration on the appliances
+will be saved
 * name - The name of the group to add
 * access_policies - The access policies which will be associated
 with this group"""
     logger = make_logger("mast.accounts")
     check_hostname = not no_check_hostname
-    env = datapower.Environment(appliances, credentials, timeout, check_hostname=check_hostname)
+    env = datapower.Environment(
+        appliances,
+        credentials,
+        timeout,
+        check_hostname=check_hostname)
 
     kwargs = {'name': name, 'access_policies': access_policies}
     logger.info("Adding group {} to {}".format(name, str(env.appliances)))
@@ -104,11 +112,16 @@ def del_group(appliances=[], credentials=[],
 
 Parameters:
 
-* save_config - If specified the configuration on the appliances will be saved
+* save_config - If specified the configuration on the
+appliances will be saved
 * UserGroup - The name of the group to remove"""
     logger = make_logger("mast.accounts")
     check_hostname = not no_check_hostname
-    env = datapower.Environment(appliances, credentials, timeout, check_hostname=check_hostname)
+    env = datapower.Environment(
+        appliances,
+        credentials,
+        timeout,
+        check_hostname=check_hostname)
 
     kwargs = {'group': UserGroup}
     logger.info(
@@ -195,7 +208,11 @@ Parameters:
 group**"""
     logger = make_logger("mast.accounts")
     check_hostname = not no_check_hostname
-    env = datapower.Environment(appliances, credentials, timeout, check_hostname=check_hostname)
+    env = datapower.Environment(
+        appliances,
+        credentials,
+        timeout,
+        check_hostname=check_hostname)
     logger.info(
         "Attempting to add user {} to {}".format(
             username, str(env.appliances)))
@@ -233,11 +250,16 @@ def del_user(appliances=[], credentials=[],
 
 Parameters:
 
-* save_config - If specified the configuration on the appliances will be saved
+* save_config - If specified the configuration on the
+appliances will be saved
 * User - The name of the user to remove"""
     logger = make_logger("mast.accounts")
     check_hostname = not no_check_hostname
-    env = datapower.Environment(appliances, credentials, timeout, check_hostname=check_hostname)
+    env = datapower.Environment(
+        appliances,
+        credentials,
+        timeout,
+        check_hostname=check_hostname)
     logger.info(
         "Attempting to delete user {} from {}".format(
             User, str(env.appliances)))
@@ -276,7 +298,11 @@ Parameters:
 * password - The new password for the specified user"""
     logger = make_logger("mast.accounts")
     check_hostname = not no_check_hostname
-    env = datapower.Environment(appliances, credentials, timeout, check_hostname=check_hostname)
+    env = datapower.Environment(
+        appliances,
+        credentials,
+        timeout,
+        check_hostname=check_hostname)
     logger.info(
         "Attempting to change password for {} on {}".format(
             User, str(env.appliances)))
@@ -305,17 +331,22 @@ Parameters:
 @logged("mast.datapower.accounts")
 @cli.command('force-change-password', category='users/groups')
 def force_change_password(appliances=[], credentials=[],
-             timeout=120, save_config=False,
-             User="", no_check_hostname=False, web=False):
+                          timeout=120, save_config=False,
+                          User="", no_check_hostname=False, web=False):
     """Forces a user to change their password on their next login.
 
 Parameters:
 
-* save_config - If specified the configuration on the appliances will be saved
+* save_config - If specified the configuration on the
+appliances will be saved
 * User - The name of the user to force a password change"""
     logger = make_logger("mast.accounts")
     check_hostname = not no_check_hostname
-    env = datapower.Environment(appliances, credentials, timeout, check_hostname=check_hostname)
+    env = datapower.Environment(
+        appliances,
+        credentials,
+        timeout,
+        check_hostname=check_hostname)
     logger.info(
         "Attempting to force {} to change password on {}".format(
             User, str(env.appliances)))
@@ -346,12 +377,16 @@ Parameters:
 @logged("mast.datapower.accounts")
 @cli.command('list-rbm-fallback', category='users/groups')
 def list_rbm_fallback_users(appliances=[], credentials=[],
-    timeout=120, no_check_hostname=False, web=False):
+                            timeout=120, no_check_hostname=False, web=False):
     """Lists the current RBM Fallback Users for the specified appliances,
     as well as the fallback users which are common to all appliances."""
     logger = make_logger("mast.accounts")
     check_hostname = not no_check_hostname
-    env = datapower.Environment(appliances, credentials, timeout, check_hostname=check_hostname)
+    env = datapower.Environment(
+        appliances,
+        credentials,
+        timeout,
+        check_hostname=check_hostname)
     if web:
         return util.web_list_rbm_fallback(env), util.render_history(env)
 
@@ -382,17 +417,22 @@ def list_rbm_fallback_users(appliances=[], credentials=[],
 @logged("mast.datapower.accounts")
 @cli.command('add-rbm-fallback', category='users/groups')
 def add_rbm_fallback(appliances=[], credentials=[],
-             timeout=120, save_config=False,
-             User="", no_check_hostname=False, web=False):
+                     timeout=120, save_config=False,
+                     User="", no_check_hostname=False, web=False):
     """Adds a user to the the RBM Fallback users.
 
 Parameters:
 
-* save_config - If specified the configuration on the appliances will be saved
+* save_config - If specified the configuration on the
+appliances will be saved
 * User - The name of the user to add to RBM Fallback"""
     logger = make_logger("mast.accounts")
     check_hostname = not no_check_hostname
-    env = datapower.Environment(appliances, credentials, timeout, check_hostname=check_hostname)
+    env = datapower.Environment(
+        appliances,
+        credentials,
+        timeout,
+        check_hostname=check_hostname)
     logger.info(
         "Attempting to add {} as an RBM Fallback user to {}".format(
             User, str(env.appliances)))
@@ -420,17 +460,22 @@ Parameters:
 @logged("mast.datapower.accounts")
 @cli.command('del-rbm-fallback', category='users/groups')
 def del_rbm_fallback(appliances=[], credentials=[],
-             timeout=120, save_config=False,
-             User="", no_check_hostname=False, web=False):
+                     timeout=120, save_config=False,
+                     User="", no_check_hostname=False, web=False):
     """Removes a user from the the RBM Fallback users.
 
 Parameters:
 
-* save_config - If specified the configuration on the appliances will be saved
+* save_config - If specified the configuration on the
+appliances will be saved
 * User - The name of the user to add to RBM Fallback"""
     logger = make_logger("mast.accounts")
     check_hostname = not no_check_hostname
-    env = datapower.Environment(appliances, credentials, timeout, check_hostname=check_hostname)
+    env = datapower.Environment(
+        appliances,
+        credentials,
+        timeout,
+        check_hostname=check_hostname)
     logger.info(
         "Attempting to remove {} from RBM Fallback users on {}".format(
             User, str(env.appliances)))
@@ -455,9 +500,9 @@ Parameters:
         return output, util.render_history(env)
 
 #
-#~#~#~#~#~#~#~#
+# ~#~#~#~#~#~#~#
 
-#~#~#~#~#~#~#~#
+# ~#~#~#~#~#~#~#
 # Caches
 # ======
 #
@@ -486,7 +531,11 @@ Parameters:
 * aaa_policy - the AAAPolicy who's cache you would like to flush'"""
     logger = make_logger("mast.accounts")
     check_hostname = not no_check_hostname
-    env = datapower.Environment(appliances, credentials, timeout, check_hostname=check_hostname)
+    env = datapower.Environment(
+        appliances,
+        credentials,
+        timeout,
+        check_hostname=check_hostname)
     logger.info(
         "Attempting to flush AAA cache on {}".format(
             str(env.appliances)))
@@ -526,7 +575,11 @@ you would like to flush.
 * xml_manager - The XMLManager who's cache you would like to flush"""
     logger = make_logger("mast.accounts")
     check_hostname = not no_check_hostname
-    env = datapower.Environment(appliances, credentials, timeout, check_hostname=check_hostname)
+    env = datapower.Environment(
+        appliances,
+        credentials,
+        timeout,
+        check_hostname=check_hostname)
     logger.info(
         "Attempting to flush LDAP Pool cache on {}".format(
             str(env.appliances)))
@@ -536,8 +589,10 @@ you would like to flush.
     logger.debug("Responses received {}".format(str(responses)))
 
     if web:
-        return util.render_boolean_results_table(
-            responses, suffix="flush_ldap_pool_cache"), util.render_history(env)
+        return (util.render_boolean_results_table(
+                    responses,
+                    suffix="flush_ldap_pool_cache"),
+                util.render_history(env))
 
     for host, response in list(responses.items()):
         if response:
@@ -554,11 +609,16 @@ you would like to flush.
 @logged("mast.datapower.accounts")
 @cli.command('flush-rbm-cache', category='caches')
 def flush_rbm_cache(appliances=[], credentials=[],
-                    timeout=120, Domain="", no_check_hostname=False, web=False):
+                    timeout=120, Domain="",
+                    no_check_hostname=False, web=False):
     """Flush the RBM Cache in the specified Domain"""
     logger = make_logger("mast.accounts")
     check_hostname = not no_check_hostname
-    env = datapower.Environment(appliances, credentials, timeout, check_hostname=check_hostname)
+    env = datapower.Environment(
+        appliances,
+        credentials,
+        timeout,
+        check_hostname=check_hostname)
     logger.info(
         "Attempting to flush RBM cache on {}".format(
             str(env.appliances)))
@@ -581,7 +641,8 @@ def flush_rbm_cache(appliances=[], credentials=[],
                 print "FAILURE"
                 print response
 #
-#~#~#~#~#~#~#~#
+# ~#~#~#~#~#~#~#
+
 
 def get_data_file(f):
     _root = os.path.dirname(__file__)
@@ -589,10 +650,6 @@ def get_data_file(f):
     with open(path, "rb") as fin:
         return fin.read()
 
-
-from mast.plugins.web import Plugin
-import mast.plugin_utils.plugin_functions as pf
-from functools import partial, update_wrapper
 
 class WebPlugin(Plugin):
     def __init__(self):
