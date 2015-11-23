@@ -12,6 +12,7 @@ import os
 import commandr
 from mast.plugins.web import Plugin
 from mast.datapower import datapower
+from pkg_resources import resource_string
 from mast.logging import make_logger, logged
 import mast.plugin_utils.plugin_utils as util
 from functools import partial, update_wrapper
@@ -645,10 +646,7 @@ def flush_rbm_cache(appliances=[], credentials=[],
 
 
 def get_data_file(f):
-    _root = os.path.dirname(__file__)
-    path = os.path.join(_root, "data", f)
-    with open(path, "rb") as fin:
-        return fin.read()
+    return resource_string(__name__, 'data/{}'.format(f))
 
 
 class WebPlugin(Plugin):
