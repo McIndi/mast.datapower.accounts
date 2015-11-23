@@ -24,6 +24,9 @@ setup(
             'accounts = mast.datapower.accounts:WebPlugin'
         ]
     },
+    package_data={
+        "mast.datapower.accounts": ["data/*"]
+    },
     incude_package_data=True,
     long_description=read('README.md'),
     classifiers=[
