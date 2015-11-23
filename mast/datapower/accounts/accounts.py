@@ -646,7 +646,7 @@ def flush_rbm_cache(appliances=[], credentials=[],
 
 
 def get_data_file(f):
-    return resource_string(__name__, 'data/{}'.format(f))
+    return resource_string(__name__, 'docroot/{}'.format(f))
 
 
 class WebPlugin(Plugin):
