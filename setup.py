@@ -25,7 +25,7 @@ setup(
         ]
     },
     package_data={
-        "mast.datapower.accounts": ["data/*"]
+        "": ["data/*"]
     },
     incude_package_data=True,
     long_description=read('README.md'),
