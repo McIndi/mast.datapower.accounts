@@ -23,8 +23,11 @@ cli = commandr.Commandr()
 
 @logged("mast.datapower.accounts")
 @cli.command('list-groups', category='users/groups')
-def list_groups(appliances=[], credentials=[],
-                timeout=120, no_check_hostname=False, web=False):
+def list_groups(appliances=[],
+                credentials=[],
+                timeout=120,
+                no_check_hostname=False,
+                web=False):
     """Display a list of groups on the DataPower appliances, along with
 a list of the groups common to all appliances"""
 
@@ -61,10 +64,14 @@ a list of the groups common to all appliances"""
 
 @logged("mast.datapower.accounts")
 @cli.command('add-group', category='users/groups')
-def add_group(appliances=[], credentials=[],
-              timeout=120, save_config=False,
-              name=None, access_policies=[],
-              no_check_hostname=False, web=False):
+def add_group(appliances=[],
+              credentials=[],
+              timeout=120,
+              no_check_hostname=False,
+              save_config=False,
+              name=None,
+              access_policies=[],
+              web=False):
     """Adds a user group to the specified appliances.
 
 Arguments:
@@ -106,9 +113,13 @@ with this group"""
 
 @logged("mast.datapower.accounts")
 @cli.command('del-group', category='users/groups')
-def del_group(appliances=[], credentials=[],
-              timeout=120, save_config=False,
-              UserGroup="", no_check_hostname=False, web=False):
+def del_group(appliances=[],
+              credentials=[],
+              timeout=120,
+              no_check_hostname=False,
+              save_config=False,
+              UserGroup="",
+              web=False):
     """Removes a user group from the specified appliances.
 
 Parameters:
@@ -151,8 +162,11 @@ appliances will be saved
 
 @logged("mast.datapower.accounts")
 @cli.command('list-users', category='users/groups')
-def list_users(appliances=[], credentials=[],
-               timeout=120, no_check_hostname=False, web=False):
+def list_users(appliances=[],
+               credentials=[],
+               timeout=120,
+               no_check_hostname=False,
+               web=False):
     """Lists the users on the specified appliances as well as a list
 of users common to all appliances."""
     logger = make_logger("mast.accounts")
@@ -190,11 +204,16 @@ of users common to all appliances."""
 
 @logged("mast.datapower.accounts")
 @cli.command('add-user', category='users/groups')
-def add_user(appliances=[], credentials=[],
-             timeout=120, save_config=False,
-             username=None, password="",
-             privileged=False, group=None,
-             no_check_hostname=False, web=False):
+def add_user(appliances=[],
+             credentials=[],
+             timeout=120,
+             no_check_hostname=False,
+             save_config=False,
+             username=None,
+             password="",
+             privileged=False,
+             group=None,
+             web=False):
     """Adds a user to the specified appliances.
 
 Parameters:
@@ -244,9 +263,13 @@ group**"""
 
 @logged("mast.datapower.accounts")
 @cli.command('del-user', category='users/groups')
-def del_user(appliances=[], credentials=[],
-             timeout=120, save_config=False,
-             User="", no_check_hostname=False, web=False):
+def del_user(appliances=[],
+             credentials=[],
+             timeout=120,
+             no_check_hostname=False,
+             save_config=False,
+             User="",
+             web=False):
     """Removes a user from the specified appliances.
 
 Parameters:
@@ -287,9 +310,14 @@ appliances will be saved
 
 @logged("mast.datapower.accounts")
 @cli.command('change-password', category='users/groups')
-def change_password(appliances=[], credentials=[],
-                    timeout=120, save_config=False,
-                    User="", password="", no_check_hostname=False, web=False):
+def change_password(appliances=[],
+                    credentials=[],
+                    timeout=120,
+                    no_check_hostname=False,
+                    save_config=False,
+                    User="",
+                    password="",
+                    web=False):
     """Changes the specified user's password to the specified password.
 
 Parameters:
@@ -331,9 +359,13 @@ Parameters:
 
 @logged("mast.datapower.accounts")
 @cli.command('force-change-password', category='users/groups')
-def force_change_password(appliances=[], credentials=[],
-                          timeout=120, save_config=False,
-                          User="", no_check_hostname=False, web=False):
+def force_change_password(appliances=[],
+                          credentials=[],
+                          timeout=120,
+                          no_check_hostname=False,
+                          save_config=False,
+                          User="",
+                          web=False):
     """Forces a user to change their password on their next login.
 
 Parameters:
@@ -377,8 +409,11 @@ appliances will be saved
 
 @logged("mast.datapower.accounts")
 @cli.command('list-rbm-fallback', category='users/groups')
-def list_rbm_fallback_users(appliances=[], credentials=[],
-                            timeout=120, no_check_hostname=False, web=False):
+def list_rbm_fallback_users(appliances=[],
+                            credentials=[],
+                            timeout=120,
+                            no_check_hostname=False,
+                            web=False):
     """Lists the current RBM Fallback Users for the specified appliances,
     as well as the fallback users which are common to all appliances."""
     logger = make_logger("mast.accounts")
@@ -417,9 +452,13 @@ def list_rbm_fallback_users(appliances=[], credentials=[],
 
 @logged("mast.datapower.accounts")
 @cli.command('add-rbm-fallback', category='users/groups')
-def add_rbm_fallback(appliances=[], credentials=[],
-                     timeout=120, save_config=False,
-                     User="", no_check_hostname=False, web=False):
+def add_rbm_fallback(appliances=[],
+                     credentials=[],
+                     timeout=120,
+                     no_check_hostname=False,
+                     save_config=False,
+                     User="",
+                     web=False):
     """Adds a user to the the RBM Fallback users.
 
 Parameters:
@@ -460,9 +499,13 @@ appliances will be saved
 
 @logged("mast.datapower.accounts")
 @cli.command('del-rbm-fallback', category='users/groups')
-def del_rbm_fallback(appliances=[], credentials=[],
-                     timeout=120, save_config=False,
-                     User="", no_check_hostname=False, web=False):
+def del_rbm_fallback(appliances=[],
+                     credentials=[],
+                     timeout=120,
+                     no_check_hostname=False,
+                     save_config=False,
+                     User="",
+                     web=False):
     """Removes a user from the the RBM Fallback users.
 
 Parameters:
@@ -520,9 +563,13 @@ appliances will be saved
 
 @logged("mast.datapower.accounts")
 @cli.command('flush-aaa-cache', category='caches')
-def flush_aaa_cache(appliances=[], credentials=[],
-                    timeout=120, Domain="", aaa_policy="",
-                    no_check_hostname=False, web=False):
+def flush_aaa_cache(appliances=[],
+                    credentials=[],
+                    timeout=120,
+                    no_check_hostname=False,
+                    Domain="",
+                    aaa_policy="",
+                    web=False):
     """Flushes the AAA Cache of the specified aaa_policy in the
 specified Domain.
 
@@ -563,9 +610,13 @@ Parameters:
 
 @logged("mast.datapower.accounts")
 @cli.command('flush-ldap-pool-cache', category='caches')
-def flush_ldap_pool_cache(appliances=[], credentials=[],
-                          timeout=120, Domain="", xml_manager="",
-                          no_check_hostname=False, web=False):
+def flush_ldap_pool_cache(appliances=[],
+                          credentials=[],
+                          timeout=120,
+                          no_check_hostname=False,
+                          Domain="",
+                          xml_manager="",
+                          web=False):
     """Flushes the LDAP Pool Cache for the specified xml_manager
 in the specified domain.
 
@@ -609,9 +660,12 @@ you would like to flush.
 
 @logged("mast.datapower.accounts")
 @cli.command('flush-rbm-cache', category='caches')
-def flush_rbm_cache(appliances=[], credentials=[],
-                    timeout=120, Domain="",
-                    no_check_hostname=False, web=False):
+def flush_rbm_cache(appliances=[],
+                    credentials=[],
+                    timeout=120,
+                    no_check_hostname=False,
+                    Domain="",
+                    web=False):
     """Flush the RBM Cache in the specified Domain"""
     logger = make_logger("mast.accounts")
     check_hostname = not no_check_hostname
