@@ -5,10 +5,9 @@ A set of tools for automating routine user/group
 administration tasks associated with IBM DataPower
 appliances.
 
-Copyright 2014, All Rights Reserved
+Copyright 2015, All Rights Reserved
 McIndi Solutions LLC
 =========================================================="""
-import os
 import commandr
 from mast.plugins.web import Plugin
 from mast.datapower import datapower
@@ -28,8 +27,32 @@ def list_groups(appliances=[],
                 timeout=120,
                 no_check_hostname=False,
                 web=False):
-    """Display a list of groups on the DataPower appliances, along with
-a list of the groups common to all appliances"""
+    """Display a list of all configured user groups on the specified
+appliances, along with a list of the groups common to all
+appliances.
+
+Parameters:
+
+* __appliances__ - The hostname(s), ip addresse(s), environment name(s)
+or alias(es) of the appliances you would like to affect. For details
+on configuring environments please see the comments in
+`environments.conf` located in `$MAST_HOME/etc/default`. For details
+on configuring aliases please see the comments in `hosts.conf` located
+in `$MAST_HOME/etc/default`.
+* __credentials__: The credentials to use for authenticating to the
+appliances. Should be either one set to use for all appliances
+or one set for each appliance. Credentials should be in the form
+`username:password` and should be provided in a space-seperated list
+if multiple are provided. If you would prefer to not use plain-text
+passwords, you can use the output of
+`$ mast-system xor <username:password>`.
+* __timeout__: The timeout in seconds to wait for a response from
+an appliance for any single request. __NOTE__ Program execution may
+halt if a timeout is reached.
+* __no-check-hostname__: If specified SSL verification will be turned
+off when sending commands to the appliances.
+* __web__: __For Internel Use Only, will be removed in future versions.
+DO NOT USE.__"""
 
     logger = make_logger("mast.accounts")
 
@@ -74,13 +97,33 @@ def add_group(appliances=[],
               web=False):
     """Adds a user group to the specified appliances.
 
-Arguments:
+Parameters:
 
-* save_config - If specified the configuration on the appliances
+* __appliances__ - The hostname(s), ip addresse(s), environment name(s)
+or alias(es) of the appliances you would like to affect. For details
+on configuring environments please see the comments in
+`environments.conf` located in `$MAST_HOME/etc/default`. For details
+on configuring aliases please see the comments in `hosts.conf` located
+in `$MAST_HOME/etc/default`.
+* __credentials__: The credentials to use for authenticating to the
+appliances. Should be either one set to use for all appliances
+or one set for each appliance. Credentials should be in the form
+`username:password` and should be provided in a space-seperated list
+if multiple are provided. If you would prefer to not use plain-text
+passwords, you can use the output of
+`$ mast-system xor <username:password>`.
+* __timeout__: The timeout in seconds to wait for a response from
+an appliance for any single request. __NOTE__ Program execution may
+halt if a timeout is reached.
+* __no-check-hostname__: If specified SSL verification will be turned
+off when sending commands to the appliances.
+* __save_config__: If specified the configuration on the appliances
 will be saved
-* name - The name of the group to add
-* access_policies - The access policies which will be associated
-with this group"""
+* __name__: The name of the group to add
+* __access-policies__: The access policies which will be associated
+with this group
+* __web__: __For Internel Use Only, will be removed in future versions.
+DO NOT USE.__"""
     logger = make_logger("mast.accounts")
     check_hostname = not no_check_hostname
     env = datapower.Environment(
@@ -124,9 +167,29 @@ def del_group(appliances=[],
 
 Parameters:
 
-* save_config - If specified the configuration on the
+* __appliances__ - The hostname(s), ip addresse(s), environment name(s)
+or alias(es) of the appliances you would like to affect. For details
+on configuring environments please see the comments in
+`environments.conf` located in `$MAST_HOME/etc/default`. For details
+on configuring aliases please see the comments in `hosts.conf` located
+in `$MAST_HOME/etc/default`.
+* __credentials__: The credentials to use for authenticating to the
+appliances. Should be either one set to use for all appliances
+or one set for each appliance. Credentials should be in the form
+`username:password` and should be provided in a space-seperated list
+if multiple are provided. If you would prefer to not use plain-text
+passwords, you can use the output of
+`$ mast-system xor <username:password>`.
+* __timeout__: The timeout in seconds to wait for a response from
+an appliance for any single request. __NOTE__ Program execution may
+halt if a timeout is reached.
+* __no-check-hostname__: If specified SSL verification will be turned
+off when sending commands to the appliances.
+* __save-config__: If specified the configuration on the
 appliances will be saved
-* UserGroup - The name of the group to remove"""
+* __UserGroup__: The name of the group to remove
+* __web__: __For Internel Use Only, will be removed in future versions.
+DO NOT USE.__"""
     logger = make_logger("mast.accounts")
     check_hostname = not no_check_hostname
     env = datapower.Environment(
@@ -168,7 +231,30 @@ def list_users(appliances=[],
                no_check_hostname=False,
                web=False):
     """Lists the users on the specified appliances as well as a list
-of users common to all appliances."""
+of users common to all appliances.
+
+Parameters:
+
+* __appliances__ - The hostname(s), ip addresse(s), environment name(s)
+or alias(es) of the appliances you would like to affect. For details
+on configuring environments please see the comments in
+`environments.conf` located in `$MAST_HOME/etc/default`. For details
+on configuring aliases please see the comments in `hosts.conf` located
+in `$MAST_HOME/etc/default`.
+* __credentials__: The credentials to use for authenticating to the
+appliances. Should be either one set to use for all appliances
+or one set for each appliance. Credentials should be in the form
+`username:password` and should be provided in a space-seperated list
+if multiple are provided. If you would prefer to not use plain-text
+passwords, you can use the output of
+`$ mast-system xor <username:password>`.
+* __timeout__: The timeout in seconds to wait for a response from
+an appliance for any single request. __NOTE__ Program execution may
+halt if a timeout is reached.
+* __no-check-hostname__: If specified SSL verification will be turned
+off when sending commands to the appliances.
+* __web__: __For Internel Use Only, will be removed in future versions.
+DO NOT USE.__"""
     logger = make_logger("mast.accounts")
     check_hostname = not no_check_hostname
     env = datapower.Environment(
@@ -218,14 +304,35 @@ def add_user(appliances=[],
 
 Parameters:
 
-* save_config - If specified the configuration on the appliances will be saved
-* username - The name of the user to add
-* password - The initial password for the user
-* privileged - Whether the user will be a privileged user
-* group - The group to which to add the user
+* __appliances__ - The hostname(s), ip addresse(s), environment name(s)
+or alias(es) of the appliances you would like to affect. For details
+on configuring environments please see the comments in
+`environments.conf` located in `$MAST_HOME/etc/default`. For details
+on configuring aliases please see the comments in `hosts.conf` located
+in `$MAST_HOME/etc/default`.
+* __credentials__: The credentials to use for authenticating to the
+appliances. Should be either one set to use for all appliances
+or one set for each appliance. Credentials should be in the form
+`username:password` and should be provided in a space-seperated list
+if multiple are provided. If you would prefer to not use plain-text
+passwords, you can use the output of
+`$ mast-system xor <username:password>`.
+* __timeout__: The timeout in seconds to wait for a response from
+an appliance for any single request. __NOTE__ Program execution may
+halt if a timeout is reached.
+* __no-check-hostname__: If specified SSL verification will be turned
+off when sending commands to the appliances.
+* __save-config__: If specified the configuration on the appliances
+will be saved
+* __username__: The name of the user to add
+* __password__: The initial password for the user
+* __privileged__: Whether the user will be a privileged user
+* __group__: The group to which to add the user
+* __web__: __For Internel Use Only, will be removed in future versions.
+DO NOT USE.__
 
-**You cannot specify both privileged and a group. It will fail to add the
-group**"""
+**NOTE**: You cannot specify both privileged and a group.
+It will fail to add the group"""
     logger = make_logger("mast.accounts")
     check_hostname = not no_check_hostname
     env = datapower.Environment(
@@ -274,9 +381,29 @@ def del_user(appliances=[],
 
 Parameters:
 
-* save_config - If specified the configuration on the
+* __appliances__ - The hostname(s), ip addresse(s), environment name(s)
+or alias(es) of the appliances you would like to affect. For details
+on configuring environments please see the comments in
+`environments.conf` located in `$MAST_HOME/etc/default`. For details
+on configuring aliases please see the comments in `hosts.conf` located
+in `$MAST_HOME/etc/default`.
+* __credentials__: The credentials to use for authenticating to the
+appliances. Should be either one set to use for all appliances
+or one set for each appliance. Credentials should be in the form
+`username:password` and should be provided in a space-seperated list
+if multiple are provided. If you would prefer to not use plain-text
+passwords, you can use the output of
+`$ mast-system xor <username:password>`.
+* __timeout__: The timeout in seconds to wait for a response from
+an appliance for any single request. __NOTE__ Program execution may
+halt if a timeout is reached.
+* __no-check-hostname__: If specified SSL verification will be turned
+off when sending commands to the appliances.
+* __save-config__: If specified the configuration on the
 appliances will be saved
-* User - The name of the user to remove"""
+* __User__: The name of the user to remove
+* __web__: __For Internel Use Only, will be removed in future versions.
+DO NOT USE.__"""
     logger = make_logger("mast.accounts")
     check_hostname = not no_check_hostname
     env = datapower.Environment(
@@ -322,9 +449,30 @@ def change_password(appliances=[],
 
 Parameters:
 
-* save_config - If specified the configuration on the appliances will be saved
-* User - The name of the user whose password you are changing
-* password - The new password for the specified user"""
+* __appliances__ - The hostname(s), ip addresse(s), environment name(s)
+or alias(es) of the appliances you would like to affect. For details
+on configuring environments please see the comments in
+`environments.conf` located in `$MAST_HOME/etc/default`. For details
+on configuring aliases please see the comments in `hosts.conf` located
+in `$MAST_HOME/etc/default`.
+* __credentials__: The credentials to use for authenticating to the
+appliances. Should be either one set to use for all appliances
+or one set for each appliance. Credentials should be in the form
+`username:password` and should be provided in a space-seperated list
+if multiple are provided. If you would prefer to not use plain-text
+passwords, you can use the output of
+`$ mast-system xor <username:password>`.
+* __timeout__: The timeout in seconds to wait for a response from
+an appliance for any single request. __NOTE__ Program execution may
+halt if a timeout is reached.
+* __no-check-hostname__: If specified SSL verification will be turned
+off when sending commands to the appliances.
+* __save-config__: If specified the configuration on the appliances will
+be saved
+* __User__: The name of the user whose password you are changing
+* __password__: The new password for the specified user
+* __web__: __For Internel Use Only, will be removed in future versions.
+DO NOT USE.__"""
     logger = make_logger("mast.accounts")
     check_hostname = not no_check_hostname
     env = datapower.Environment(
@@ -370,9 +518,29 @@ def force_change_password(appliances=[],
 
 Parameters:
 
-* save_config - If specified the configuration on the
+* __appliances__ - The hostname(s), ip addresse(s), environment name(s)
+or alias(es) of the appliances you would like to affect. For details
+on configuring environments please see the comments in
+`environments.conf` located in `$MAST_HOME/etc/default`. For details
+on configuring aliases please see the comments in `hosts.conf` located
+in `$MAST_HOME/etc/default`.
+* __credentials__: The credentials to use for authenticating to the
+appliances. Should be either one set to use for all appliances
+or one set for each appliance. Credentials should be in the form
+`username:password` and should be provided in a space-seperated list
+if multiple are provided. If you would prefer to not use plain-text
+passwords, you can use the output of
+`$ mast-system xor <username:password>`.
+* __timeout__: The timeout in seconds to wait for a response from
+an appliance for any single request. __NOTE__ Program execution may
+halt if a timeout is reached.
+* __no-check-hostname__: If specified SSL verification will be turned
+off when sending commands to the appliances.
+* __save-config__: If specified the configuration on the
 appliances will be saved
-* User - The name of the user to force a password change"""
+* __User__: The name of the user to force a password change
+* __web__: __For Internel Use Only, will be removed in future versions.
+DO NOT USE.__"""
     logger = make_logger("mast.accounts")
     check_hostname = not no_check_hostname
     env = datapower.Environment(
@@ -415,7 +583,30 @@ def list_rbm_fallback_users(appliances=[],
                             no_check_hostname=False,
                             web=False):
     """Lists the current RBM Fallback Users for the specified appliances,
-    as well as the fallback users which are common to all appliances."""
+as well as the fallback users which are common to all appliances.
+
+Parameters:
+
+* __appliances__ - The hostname(s), ip addresse(s), environment name(s)
+or alias(es) of the appliances you would like to affect. For details
+on configuring environments please see the comments in
+`environments.conf` located in `$MAST_HOME/etc/default`. For details
+on configuring aliases please see the comments in `hosts.conf` located
+in `$MAST_HOME/etc/default`.
+* __credentials__: The credentials to use for authenticating to the
+appliances. Should be either one set to use for all appliances
+or one set for each appliance. Credentials should be in the form
+`username:password` and should be provided in a space-seperated list
+if multiple are provided. If you would prefer to not use plain-text
+passwords, you can use the output of
+`$ mast-system xor <username:password>`.
+* __timeout__: The timeout in seconds to wait for a response from
+an appliance for any single request. __NOTE__ Program execution may
+halt if a timeout is reached.
+* __no-check-hostname__: If specified SSL verification will be turned
+off when sending commands to the appliances.
+* __web__: __For Internel Use Only, will be removed in future versions.
+DO NOT USE.__"""
     logger = make_logger("mast.accounts")
     check_hostname = not no_check_hostname
     env = datapower.Environment(
@@ -463,9 +654,29 @@ def add_rbm_fallback(appliances=[],
 
 Parameters:
 
-* save_config - If specified the configuration on the
+* __appliances__ - The hostname(s), ip addresse(s), environment name(s)
+or alias(es) of the appliances you would like to affect. For details
+on configuring environments please see the comments in
+`environments.conf` located in `$MAST_HOME/etc/default`. For details
+on configuring aliases please see the comments in `hosts.conf` located
+in `$MAST_HOME/etc/default`.
+* __credentials__: The credentials to use for authenticating to the
+appliances. Should be either one set to use for all appliances
+or one set for each appliance. Credentials should be in the form
+`username:password` and should be provided in a space-seperated list
+if multiple are provided. If you would prefer to not use plain-text
+passwords, you can use the output of
+`$ mast-system xor <username:password>`.
+* __timeout__: The timeout in seconds to wait for a response from
+an appliance for any single request. __NOTE__ Program execution may
+halt if a timeout is reached.
+* __no-check-hostname__: If specified SSL verification will be turned
+off when sending commands to the appliances.
+* __save-config__: If specified the configuration on the
 appliances will be saved
-* User - The name of the user to add to RBM Fallback"""
+* __User__: The name of the user to add to RBM Fallback
+* __web__: __For Internel Use Only, will be removed in future versions.
+DO NOT USE.__"""
     logger = make_logger("mast.accounts")
     check_hostname = not no_check_hostname
     env = datapower.Environment(
@@ -510,9 +721,29 @@ def del_rbm_fallback(appliances=[],
 
 Parameters:
 
-* save_config - If specified the configuration on the
+* __appliances__ - The hostname(s), ip addresse(s), environment name(s)
+or alias(es) of the appliances you would like to affect. For details
+on configuring environments please see the comments in
+`environments.conf` located in `$MAST_HOME/etc/default`. For details
+on configuring aliases please see the comments in `hosts.conf` located
+in `$MAST_HOME/etc/default`.
+* __credentials__: The credentials to use for authenticating to the
+appliances. Should be either one set to use for all appliances
+or one set for each appliance. Credentials should be in the form
+`username:password` and should be provided in a space-seperated list
+if multiple are provided. If you would prefer to not use plain-text
+passwords, you can use the output of
+`$ mast-system xor <username:password>`.
+* __timeout__: The timeout in seconds to wait for a response from
+an appliance for any single request. __NOTE__ Program execution may
+halt if a timeout is reached.
+* __no-check-hostname__: If specified SSL verification will be turned
+off when sending commands to the appliances.
+* __save-config__: If specified the configuration on the
 appliances will be saved
-* User - The name of the user to add to RBM Fallback"""
+* __User__: The name of the user to add to RBM Fallback
+* __web__: __For Internel Use Only, will be removed in future versions.
+DO NOT USE.__"""
     logger = make_logger("mast.accounts")
     check_hostname = not no_check_hostname
     env = datapower.Environment(
@@ -575,8 +806,28 @@ specified Domain.
 
 Parameters:
 
-* Domain - The domain where the aaa_policy resides
-* aaa_policy - the AAAPolicy who's cache you would like to flush'"""
+* __appliances__ - The hostname(s), ip addresse(s), environment name(s)
+or alias(es) of the appliances you would like to affect. For details
+on configuring environments please see the comments in
+`environments.conf` located in `$MAST_HOME/etc/default`. For details
+on configuring aliases please see the comments in `hosts.conf` located
+in `$MAST_HOME/etc/default`.
+* __credentials__: The credentials to use for authenticating to the
+appliances. Should be either one set to use for all appliances
+or one set for each appliance. Credentials should be in the form
+`username:password` and should be provided in a space-seperated list
+if multiple are provided. If you would prefer to not use plain-text
+passwords, you can use the output of
+`$ mast-system xor <username:password>`.
+* __timeout__: The timeout in seconds to wait for a response from
+an appliance for any single request. __NOTE__ Program execution may
+halt if a timeout is reached.
+* __no-check-hostname__: If specified SSL verification will be turned
+off when sending commands to the appliances.
+* __Domain__: The domain where the aaa_policy resides
+* __aaa-policy__: the AAAPolicy who's cache you would like to flush
+* __web__: __For Internel Use Only, will be removed in future versions.
+DO NOT USE.__"""
     logger = make_logger("mast.accounts")
     check_hostname = not no_check_hostname
     env = datapower.Environment(
@@ -622,9 +873,29 @@ in the specified domain.
 
 Parameters:
 
-* Domain - The domain which has the xml_manager who's cache
+* __appliances__ - The hostname(s), ip addresse(s), environment name(s)
+or alias(es) of the appliances you would like to affect. For details
+on configuring environments please see the comments in
+`environments.conf` located in `$MAST_HOME/etc/default`. For details
+on configuring aliases please see the comments in `hosts.conf` located
+in `$MAST_HOME/etc/default`.
+* __credentials__: The credentials to use for authenticating to the
+appliances. Should be either one set to use for all appliances
+or one set for each appliance. Credentials should be in the form
+`username:password` and should be provided in a space-seperated list
+if multiple are provided. If you would prefer to not use plain-text
+passwords, you can use the output of
+`$ mast-system xor <username:password>`.
+* __timeout__: The timeout in seconds to wait for a response from
+an appliance for any single request. __NOTE__ Program execution may
+halt if a timeout is reached.
+* __no-check-hostname__: If specified SSL verification will be turned
+off when sending commands to the appliances.
+* __Domain__: The domain which has the xml_manager who's cache
 you would like to flush.
-* xml_manager - The XMLManager who's cache you would like to flush"""
+* __xml-manager__: The XMLManager who's cache you would like to flush
+* __web__: __For Internel Use Only, will be removed in future versions.
+DO NOT USE.__"""
     logger = make_logger("mast.accounts")
     check_hostname = not no_check_hostname
     env = datapower.Environment(
@@ -666,7 +937,31 @@ def flush_rbm_cache(appliances=[],
                     no_check_hostname=False,
                     Domain="",
                     web=False):
-    """Flush the RBM Cache in the specified Domain"""
+    """Flush the RBM Cache in the specified Domain
+
+Parameters:
+
+* __appliances__ - The hostname(s), ip addresse(s), environment name(s)
+or alias(es) of the appliances you would like to affect. For details
+on configuring environments please see the comments in
+`environments.conf` located in `$MAST_HOME/etc/default`. For details
+on configuring aliases please see the comments in `hosts.conf` located
+in `$MAST_HOME/etc/default`.
+* __credentials__: The credentials to use for authenticating to the
+appliances. Should be either one set to use for all appliances
+or one set for each appliance. Credentials should be in the form
+`username:password` and should be provided in a space-seperated list
+if multiple are provided. If you would prefer to not use plain-text
+passwords, you can use the output of
+`$ mast-system xor <username:password>`.
+* __timeout__: The timeout in seconds to wait for a response from
+an appliance for any single request. __NOTE__ Program execution may
+halt if a timeout is reached.
+* __no-check-hostname__: If specified SSL verification will be turned
+off when sending commands to the appliances.
+* __Domain__: The domain for which to flush the RBM Cache
+* __web__: __For Internel Use Only, will be removed in future versions.
+DO NOT USE.__"""
     logger = make_logger("mast.accounts")
     check_hostname = not no_check_hostname
     env = datapower.Environment(
