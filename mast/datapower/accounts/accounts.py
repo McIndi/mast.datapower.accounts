@@ -33,25 +33,25 @@ appliances.
 
 Parameters:
 
-* __appliances__ - The hostname(s), ip addresse(s), environment name(s)
+* `-a, --appliances` - The hostname(s), ip addresse(s), environment name(s)
 or alias(es) of the appliances you would like to affect. For details
 on configuring environments please see the comments in
 `environments.conf` located in `$MAST_HOME/etc/default`. For details
 on configuring aliases please see the comments in `hosts.conf` located
 in `$MAST_HOME/etc/default`.
-* __credentials__: The credentials to use for authenticating to the
+* `-c, --credentials`: The credentials to use for authenticating to the
 appliances. Should be either one set to use for all appliances
 or one set for each appliance. Credentials should be in the form
 `username:password` and should be provided in a space-seperated list
 if multiple are provided. If you would prefer to not use plain-text
 passwords, you can use the output of
 `$ mast-system xor <username:password>`.
-* __timeout__: The timeout in seconds to wait for a response from
+* `-t, --timeout`: The timeout in seconds to wait for a response from
 an appliance for any single request. __NOTE__ Program execution may
 halt if a timeout is reached.
-* __no-check-hostname__: If specified SSL verification will be turned
+* `-n, --no-check-hostname`: If specified SSL verification will be turned
 off when sending commands to the appliances.
-* __web__: __For Internel Use Only, will be removed in future versions.
+* `-w, --web`: __For Internel Use Only, will be removed in future versions.
 DO NOT USE.__"""
 
     logger = make_logger("mast.accounts")
@@ -99,30 +99,30 @@ def add_group(appliances=[],
 
 Parameters:
 
-* __appliances__ - The hostname(s), ip addresse(s), environment name(s)
+* `-a, --appliances`: The hostname(s), ip addresse(s), environment name(s)
 or alias(es) of the appliances you would like to affect. For details
 on configuring environments please see the comments in
 `environments.conf` located in `$MAST_HOME/etc/default`. For details
 on configuring aliases please see the comments in `hosts.conf` located
 in `$MAST_HOME/etc/default`.
-* __credentials__: The credentials to use for authenticating to the
+* `-c, --credentials`: The credentials to use for authenticating to the
 appliances. Should be either one set to use for all appliances
 or one set for each appliance. Credentials should be in the form
 `username:password` and should be provided in a space-seperated list
 if multiple are provided. If you would prefer to not use plain-text
 passwords, you can use the output of
 `$ mast-system xor <username:password>`.
-* __timeout__: The timeout in seconds to wait for a response from
+* `-t, --timeout`: The timeout in seconds to wait for a response from
 an appliance for any single request. __NOTE__ Program execution may
 halt if a timeout is reached.
-* __no-check-hostname__: If specified SSL verification will be turned
+* `-n, --no-check-hostname`: If specified SSL verification will be turned
 off when sending commands to the appliances.
-* __save_config__: If specified the configuration on the appliances
+* `-s, --save-config`: If specified the configuration on the appliances
 will be saved
-* __name__: The name of the group to add
-* __access-policies__: The access policies which will be associated
+* `-n, --name`: The name of the group to add
+* `-A, --access-policies`: The access policies which will be associated
 with this group
-* __web__: __For Internel Use Only, will be removed in future versions.
+* -w, --web`: __For Internel Use Only, will be removed in future versions.
 DO NOT USE.__"""
     logger = make_logger("mast.accounts")
     check_hostname = not no_check_hostname
@@ -167,28 +167,28 @@ def del_group(appliances=[],
 
 Parameters:
 
-* __appliances__ - The hostname(s), ip addresse(s), environment name(s)
+* `-a, --appliances`: The hostname(s), ip addresse(s), environment name(s)
 or alias(es) of the appliances you would like to affect. For details
 on configuring environments please see the comments in
 `environments.conf` located in `$MAST_HOME/etc/default`. For details
 on configuring aliases please see the comments in `hosts.conf` located
 in `$MAST_HOME/etc/default`.
-* __credentials__: The credentials to use for authenticating to the
+* `-c, --credentials`: The credentials to use for authenticating to the
 appliances. Should be either one set to use for all appliances
 or one set for each appliance. Credentials should be in the form
 `username:password` and should be provided in a space-seperated list
 if multiple are provided. If you would prefer to not use plain-text
 passwords, you can use the output of
 `$ mast-system xor <username:password>`.
-* __timeout__: The timeout in seconds to wait for a response from
+* `-t, --timeout`: The timeout in seconds to wait for a response from
 an appliance for any single request. __NOTE__ Program execution may
 halt if a timeout is reached.
-* __no-check-hostname__: If specified SSL verification will be turned
+* `-n, --no-check-hostname`: If specified SSL verification will be turned
 off when sending commands to the appliances.
-* __save-config__: If specified the configuration on the
+* `-s, --save-config`: If specified the configuration on the
 appliances will be saved
-* __UserGroup__: The name of the group to remove
-* __web__: __For Internel Use Only, will be removed in future versions.
+* `-U, --UserGroup`: The name of the group to remove
+* `-w, --web`: __For Internel Use Only, will be removed in future versions.
 DO NOT USE.__"""
     logger = make_logger("mast.accounts")
     check_hostname = not no_check_hostname
@@ -235,25 +235,25 @@ of users common to all appliances.
 
 Parameters:
 
-* __appliances__ - The hostname(s), ip addresse(s), environment name(s)
+* `-a, --appliances`: The hostname(s), ip addresse(s), environment name(s)
 or alias(es) of the appliances you would like to affect. For details
 on configuring environments please see the comments in
 `environments.conf` located in `$MAST_HOME/etc/default`. For details
 on configuring aliases please see the comments in `hosts.conf` located
 in `$MAST_HOME/etc/default`.
-* __credentials__: The credentials to use for authenticating to the
+* `-c, --credentials`: The credentials to use for authenticating to the
 appliances. Should be either one set to use for all appliances
 or one set for each appliance. Credentials should be in the form
 `username:password` and should be provided in a space-seperated list
 if multiple are provided. If you would prefer to not use plain-text
 passwords, you can use the output of
 `$ mast-system xor <username:password>`.
-* __timeout__: The timeout in seconds to wait for a response from
+* `-t, --timeout`: The timeout in seconds to wait for a response from
 an appliance for any single request. __NOTE__ Program execution may
 halt if a timeout is reached.
-* __no-check-hostname__: If specified SSL verification will be turned
+* `-n, --no-check-hostname`: If specified SSL verification will be turned
 off when sending commands to the appliances.
-* __web__: __For Internel Use Only, will be removed in future versions.
+* `-w, --web`: __For Internel Use Only, will be removed in future versions.
 DO NOT USE.__"""
     logger = make_logger("mast.accounts")
     check_hostname = not no_check_hostname
@@ -304,31 +304,31 @@ def add_user(appliances=[],
 
 Parameters:
 
-* __appliances__ - The hostname(s), ip addresse(s), environment name(s)
+* `-a, --appliances`: The hostname(s), ip addresse(s), environment name(s)
 or alias(es) of the appliances you would like to affect. For details
 on configuring environments please see the comments in
 `environments.conf` located in `$MAST_HOME/etc/default`. For details
 on configuring aliases please see the comments in `hosts.conf` located
 in `$MAST_HOME/etc/default`.
-* __credentials__: The credentials to use for authenticating to the
+* `-c, --credentials`: The credentials to use for authenticating to the
 appliances. Should be either one set to use for all appliances
 or one set for each appliance. Credentials should be in the form
 `username:password` and should be provided in a space-seperated list
 if multiple are provided. If you would prefer to not use plain-text
 passwords, you can use the output of
 `$ mast-system xor <username:password>`.
-* __timeout__: The timeout in seconds to wait for a response from
+* `-t, --timeout`: The timeout in seconds to wait for a response from
 an appliance for any single request. __NOTE__ Program execution may
 halt if a timeout is reached.
-* __no-check-hostname__: If specified SSL verification will be turned
+* `-n, --no-check-hostname`: If specified SSL verification will be turned
 off when sending commands to the appliances.
-* __save-config__: If specified the configuration on the appliances
+* `-s, --save-config`: If specified the configuration on the appliances
 will be saved
-* __username__: The name of the user to add
-* __password__: The initial password for the user
-* __privileged__: Whether the user will be a privileged user
-* __group__: The group to which to add the user
-* __web__: __For Internel Use Only, will be removed in future versions.
+* `-u, --username`: The name of the user to add
+* `-p, --password`: The initial password for the user
+* `-P, --privileged`: Whether the user will be a privileged user
+* `-g, --group`: The group to which to add the user
+* `-w, --web`: __For Internel Use Only, will be removed in future versions.
 DO NOT USE.__
 
 **NOTE**: You cannot specify both privileged and a group.
@@ -381,28 +381,28 @@ def del_user(appliances=[],
 
 Parameters:
 
-* __appliances__ - The hostname(s), ip addresse(s), environment name(s)
+* `-a, --appliances`: The hostname(s), ip addresse(s), environment name(s)
 or alias(es) of the appliances you would like to affect. For details
 on configuring environments please see the comments in
 `environments.conf` located in `$MAST_HOME/etc/default`. For details
 on configuring aliases please see the comments in `hosts.conf` located
 in `$MAST_HOME/etc/default`.
-* __credentials__: The credentials to use for authenticating to the
+* `-c, --credentials`: The credentials to use for authenticating to the
 appliances. Should be either one set to use for all appliances
 or one set for each appliance. Credentials should be in the form
 `username:password` and should be provided in a space-seperated list
 if multiple are provided. If you would prefer to not use plain-text
 passwords, you can use the output of
 `$ mast-system xor <username:password>`.
-* __timeout__: The timeout in seconds to wait for a response from
+* `-t, --timeout`: The timeout in seconds to wait for a response from
 an appliance for any single request. __NOTE__ Program execution may
 halt if a timeout is reached.
-* __no-check-hostname__: If specified SSL verification will be turned
+* `-n, --no-check-hostname`: If specified SSL verification will be turned
 off when sending commands to the appliances.
-* __save-config__: If specified the configuration on the
+* `-s, --save-config`: If specified the configuration on the
 appliances will be saved
-* __User__: The name of the user to remove
-* __web__: __For Internel Use Only, will be removed in future versions.
+* `-U, --User`: The name of the user to remove
+* `-w, --web`: __For Internel Use Only, will be removed in future versions.
 DO NOT USE.__"""
     logger = make_logger("mast.accounts")
     check_hostname = not no_check_hostname
@@ -449,29 +449,29 @@ def change_password(appliances=[],
 
 Parameters:
 
-* __appliances__ - The hostname(s), ip addresse(s), environment name(s)
+* `-a, --appliances`: The hostname(s), ip addresse(s), environment name(s)
 or alias(es) of the appliances you would like to affect. For details
 on configuring environments please see the comments in
 `environments.conf` located in `$MAST_HOME/etc/default`. For details
 on configuring aliases please see the comments in `hosts.conf` located
 in `$MAST_HOME/etc/default`.
-* __credentials__: The credentials to use for authenticating to the
+* `-c, --credentials`: The credentials to use for authenticating to the
 appliances. Should be either one set to use for all appliances
 or one set for each appliance. Credentials should be in the form
 `username:password` and should be provided in a space-seperated list
 if multiple are provided. If you would prefer to not use plain-text
 passwords, you can use the output of
 `$ mast-system xor <username:password>`.
-* __timeout__: The timeout in seconds to wait for a response from
+* `-t, --timeout`: The timeout in seconds to wait for a response from
 an appliance for any single request. __NOTE__ Program execution may
 halt if a timeout is reached.
-* __no-check-hostname__: If specified SSL verification will be turned
+* `-n, --no-check-hostname`: If specified SSL verification will be turned
 off when sending commands to the appliances.
-* __save-config__: If specified the configuration on the appliances will
+* `-s, --save-config`: If specified the configuration on the appliances will
 be saved
-* __User__: The name of the user whose password you are changing
-* __password__: The new password for the specified user
-* __web__: __For Internel Use Only, will be removed in future versions.
+* `-U, --User`: The name of the user whose password you are changing
+* `-p, --password`: The new password for the specified user
+* `-w, --web`: __For Internel Use Only, will be removed in future versions.
 DO NOT USE.__"""
     logger = make_logger("mast.accounts")
     check_hostname = not no_check_hostname
@@ -518,28 +518,28 @@ def force_change_password(appliances=[],
 
 Parameters:
 
-* __appliances__ - The hostname(s), ip addresse(s), environment name(s)
+* `-a, --appliances`: The hostname(s), ip addresse(s), environment name(s)
 or alias(es) of the appliances you would like to affect. For details
 on configuring environments please see the comments in
 `environments.conf` located in `$MAST_HOME/etc/default`. For details
 on configuring aliases please see the comments in `hosts.conf` located
 in `$MAST_HOME/etc/default`.
-* __credentials__: The credentials to use for authenticating to the
+* `-c, --credentials`: The credentials to use for authenticating to the
 appliances. Should be either one set to use for all appliances
 or one set for each appliance. Credentials should be in the form
 `username:password` and should be provided in a space-seperated list
 if multiple are provided. If you would prefer to not use plain-text
 passwords, you can use the output of
 `$ mast-system xor <username:password>`.
-* __timeout__: The timeout in seconds to wait for a response from
+* `-t, --timeout`: The timeout in seconds to wait for a response from
 an appliance for any single request. __NOTE__ Program execution may
 halt if a timeout is reached.
-* __no-check-hostname__: If specified SSL verification will be turned
+* `-n, --no-check-hostname`: If specified SSL verification will be turned
 off when sending commands to the appliances.
-* __save-config__: If specified the configuration on the
+* `-s, --save-config`: If specified the configuration on the
 appliances will be saved
-* __User__: The name of the user to force a password change
-* __web__: __For Internel Use Only, will be removed in future versions.
+* `-U, --User`: The name of the user to force a password change
+* `-w, --web`: __For Internel Use Only, will be removed in future versions.
 DO NOT USE.__"""
     logger = make_logger("mast.accounts")
     check_hostname = not no_check_hostname
@@ -587,25 +587,25 @@ as well as the fallback users which are common to all appliances.
 
 Parameters:
 
-* __appliances__ - The hostname(s), ip addresse(s), environment name(s)
+* `-a, --appliances`: The hostname(s), ip addresse(s), environment name(s)
 or alias(es) of the appliances you would like to affect. For details
 on configuring environments please see the comments in
 `environments.conf` located in `$MAST_HOME/etc/default`. For details
 on configuring aliases please see the comments in `hosts.conf` located
 in `$MAST_HOME/etc/default`.
-* __credentials__: The credentials to use for authenticating to the
+* `-c, --credentials`: The credentials to use for authenticating to the
 appliances. Should be either one set to use for all appliances
 or one set for each appliance. Credentials should be in the form
 `username:password` and should be provided in a space-seperated list
 if multiple are provided. If you would prefer to not use plain-text
 passwords, you can use the output of
 `$ mast-system xor <username:password>`.
-* __timeout__: The timeout in seconds to wait for a response from
+* `-t, --timeout`: The timeout in seconds to wait for a response from
 an appliance for any single request. __NOTE__ Program execution may
 halt if a timeout is reached.
-* __no-check-hostname__: If specified SSL verification will be turned
+* `-n, --no-check-hostname`: If specified SSL verification will be turned
 off when sending commands to the appliances.
-* __web__: __For Internel Use Only, will be removed in future versions.
+* `-w, --web`: __For Internel Use Only, will be removed in future versions.
 DO NOT USE.__"""
     logger = make_logger("mast.accounts")
     check_hostname = not no_check_hostname
@@ -654,28 +654,28 @@ def add_rbm_fallback(appliances=[],
 
 Parameters:
 
-* __appliances__ - The hostname(s), ip addresse(s), environment name(s)
+* `-a, --appliances`: The hostname(s), ip addresse(s), environment name(s)
 or alias(es) of the appliances you would like to affect. For details
 on configuring environments please see the comments in
 `environments.conf` located in `$MAST_HOME/etc/default`. For details
 on configuring aliases please see the comments in `hosts.conf` located
 in `$MAST_HOME/etc/default`.
-* __credentials__: The credentials to use for authenticating to the
+* `-c, --credentials`: The credentials to use for authenticating to the
 appliances. Should be either one set to use for all appliances
 or one set for each appliance. Credentials should be in the form
 `username:password` and should be provided in a space-seperated list
 if multiple are provided. If you would prefer to not use plain-text
 passwords, you can use the output of
 `$ mast-system xor <username:password>`.
-* __timeout__: The timeout in seconds to wait for a response from
+* `-t, --timeout`: The timeout in seconds to wait for a response from
 an appliance for any single request. __NOTE__ Program execution may
 halt if a timeout is reached.
-* __no-check-hostname__: If specified SSL verification will be turned
+* `-n, --no-check-hostname`: If specified SSL verification will be turned
 off when sending commands to the appliances.
-* __save-config__: If specified the configuration on the
+* `-s, --save-config`: If specified the configuration on the
 appliances will be saved
-* __User__: The name of the user to add to RBM Fallback
-* __web__: __For Internel Use Only, will be removed in future versions.
+* `-U, --User`: The name of the user to add to RBM Fallback
+* `-w, --web`: __For Internel Use Only, will be removed in future versions.
 DO NOT USE.__"""
     logger = make_logger("mast.accounts")
     check_hostname = not no_check_hostname
@@ -721,28 +721,28 @@ def del_rbm_fallback(appliances=[],
 
 Parameters:
 
-* __appliances__ - The hostname(s), ip addresse(s), environment name(s)
+* `-a, --appliances`: The hostname(s), ip addresse(s), environment name(s)
 or alias(es) of the appliances you would like to affect. For details
 on configuring environments please see the comments in
 `environments.conf` located in `$MAST_HOME/etc/default`. For details
 on configuring aliases please see the comments in `hosts.conf` located
 in `$MAST_HOME/etc/default`.
-* __credentials__: The credentials to use for authenticating to the
+* `-c, --credentials`: The credentials to use for authenticating to the
 appliances. Should be either one set to use for all appliances
 or one set for each appliance. Credentials should be in the form
 `username:password` and should be provided in a space-seperated list
 if multiple are provided. If you would prefer to not use plain-text
 passwords, you can use the output of
 `$ mast-system xor <username:password>`.
-* __timeout__: The timeout in seconds to wait for a response from
+* `-t, --timeout`: The timeout in seconds to wait for a response from
 an appliance for any single request. __NOTE__ Program execution may
 halt if a timeout is reached.
-* __no-check-hostname__: If specified SSL verification will be turned
+* `-n, --no-check-hostname`: If specified SSL verification will be turned
 off when sending commands to the appliances.
-* __save-config__: If specified the configuration on the
+* `-s, --save-config`: If specified the configuration on the
 appliances will be saved
-* __User__: The name of the user to add to RBM Fallback
-* __web__: __For Internel Use Only, will be removed in future versions.
+* `-U, --User`: The name of the user to add to RBM Fallback
+* `-w, --web`: __For Internel Use Only, will be removed in future versions.
 DO NOT USE.__"""
     logger = make_logger("mast.accounts")
     check_hostname = not no_check_hostname
@@ -806,27 +806,27 @@ specified Domain.
 
 Parameters:
 
-* __appliances__ - The hostname(s), ip addresse(s), environment name(s)
+* `-a, --appliances`: The hostname(s), ip addresse(s), environment name(s)
 or alias(es) of the appliances you would like to affect. For details
 on configuring environments please see the comments in
 `environments.conf` located in `$MAST_HOME/etc/default`. For details
 on configuring aliases please see the comments in `hosts.conf` located
 in `$MAST_HOME/etc/default`.
-* __credentials__: The credentials to use for authenticating to the
+* `-c, --credentials`: The credentials to use for authenticating to the
 appliances. Should be either one set to use for all appliances
 or one set for each appliance. Credentials should be in the form
 `username:password` and should be provided in a space-seperated list
 if multiple are provided. If you would prefer to not use plain-text
 passwords, you can use the output of
 `$ mast-system xor <username:password>`.
-* __timeout__: The timeout in seconds to wait for a response from
+* `-t, --timeout`: The timeout in seconds to wait for a response from
 an appliance for any single request. __NOTE__ Program execution may
 halt if a timeout is reached.
-* __no-check-hostname__: If specified SSL verification will be turned
+* `-n, --no-check-hostname`: If specified SSL verification will be turned
 off when sending commands to the appliances.
-* __Domain__: The domain where the aaa_policy resides
-* __aaa-policy__: the AAAPolicy who's cache you would like to flush
-* __web__: __For Internel Use Only, will be removed in future versions.
+* `-D, --Domain`: The domain where the aaa_policy resides
+* `-A, --aaa-policy`: the AAAPolicy who's cache you would like to flush
+* `-w, --web`: __For Internel Use Only, will be removed in future versions.
 DO NOT USE.__"""
     logger = make_logger("mast.accounts")
     check_hostname = not no_check_hostname
@@ -873,28 +873,28 @@ in the specified domain.
 
 Parameters:
 
-* __appliances__ - The hostname(s), ip addresse(s), environment name(s)
+* `-a, --appliances`: The hostname(s), ip addresse(s), environment name(s)
 or alias(es) of the appliances you would like to affect. For details
 on configuring environments please see the comments in
 `environments.conf` located in `$MAST_HOME/etc/default`. For details
 on configuring aliases please see the comments in `hosts.conf` located
 in `$MAST_HOME/etc/default`.
-* __credentials__: The credentials to use for authenticating to the
+* `-c, --credentials`: The credentials to use for authenticating to the
 appliances. Should be either one set to use for all appliances
 or one set for each appliance. Credentials should be in the form
 `username:password` and should be provided in a space-seperated list
 if multiple are provided. If you would prefer to not use plain-text
 passwords, you can use the output of
 `$ mast-system xor <username:password>`.
-* __timeout__: The timeout in seconds to wait for a response from
+* `-t, --timeout`: The timeout in seconds to wait for a response from
 an appliance for any single request. __NOTE__ Program execution may
 halt if a timeout is reached.
-* __no-check-hostname__: If specified SSL verification will be turned
+* `-n, --no-check-hostname`: If specified SSL verification will be turned
 off when sending commands to the appliances.
-* __Domain__: The domain which has the xml_manager who's cache
+* `-D, --Domain`: The domain which has the xml_manager who's cache
 you would like to flush.
-* __xml-manager__: The XMLManager who's cache you would like to flush
-* __web__: __For Internel Use Only, will be removed in future versions.
+* `-x, --xml-manager`: The XMLManager who's cache you would like to flush
+* `-w, --web`: __For Internel Use Only, will be removed in future versions.
 DO NOT USE.__"""
     logger = make_logger("mast.accounts")
     check_hostname = not no_check_hostname
@@ -941,26 +941,26 @@ def flush_rbm_cache(appliances=[],
 
 Parameters:
 
-* __appliances__ - The hostname(s), ip addresse(s), environment name(s)
+* `-a, --appliances`: The hostname(s), ip addresse(s), environment name(s)
 or alias(es) of the appliances you would like to affect. For details
 on configuring environments please see the comments in
 `environments.conf` located in `$MAST_HOME/etc/default`. For details
 on configuring aliases please see the comments in `hosts.conf` located
 in `$MAST_HOME/etc/default`.
-* __credentials__: The credentials to use for authenticating to the
+* `-c, --credentials`: The credentials to use for authenticating to the
 appliances. Should be either one set to use for all appliances
 or one set for each appliance. Credentials should be in the form
 `username:password` and should be provided in a space-seperated list
 if multiple are provided. If you would prefer to not use plain-text
 passwords, you can use the output of
 `$ mast-system xor <username:password>`.
-* __timeout__: The timeout in seconds to wait for a response from
+* `-t, --timeout`: The timeout in seconds to wait for a response from
 an appliance for any single request. __NOTE__ Program execution may
 halt if a timeout is reached.
-* __no-check-hostname__: If specified SSL verification will be turned
+* `-n, --no-check-hostname`: If specified SSL verification will be turned
 off when sending commands to the appliances.
-* __Domain__: The domain for which to flush the RBM Cache
-* __web__: __For Internel Use Only, will be removed in future versions.
+* `-D, --Domain`: The domain for which to flush the RBM Cache
+* `-w, --web`: __For Internel Use Only, will be removed in future versions.
 DO NOT USE.__"""
     logger = make_logger("mast.accounts")
     check_hostname = not no_check_hostname
