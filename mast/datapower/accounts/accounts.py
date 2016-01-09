@@ -119,7 +119,7 @@ halt if a timeout is reached.
 off when sending commands to the appliances.
 * `-s, --save-config`: If specified the configuration on the appliances
 will be saved
-* `-n, --name`: The name of the group to add
+* `-N, --name`: The name of the group to add
 * `-A, --access-policies`: The access policies which will be associated
 with this group
 * -w, --web`: __For Internel Use Only, will be removed in future versions.
@@ -741,7 +741,7 @@ halt if a timeout is reached.
 off when sending commands to the appliances.
 * `-s, --save-config`: If specified the configuration on the
 appliances will be saved
-* `-U, --User`: The name of the user to add to RBM Fallback
+* `-U, --User`: The name of the user to remove from RBM Fallback
 * `-w, --web`: __For Internel Use Only, will be removed in future versions.
 DO NOT USE.__"""
     logger = make_logger("mast.accounts")
