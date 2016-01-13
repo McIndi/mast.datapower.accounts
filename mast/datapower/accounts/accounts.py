@@ -33,7 +33,7 @@ appliances.
 
 Parameters:
 
-* `-a, --appliances` - The hostname(s), ip address(es), environment name(s)
+* `-a, --appliances`: The hostname(s), ip address(es), environment name(s)
 or alias(es) of the appliances you would like to affect. For details
 on configuring environments please see the comments in
 `environments.conf` located in `$MAST_HOME/etc/default`. For details
@@ -130,7 +130,7 @@ will be saved
 * `-N, --name`: The name of the group to add
 * `-A, --access-policies`: The access policies which will be associated
 with this group
-* -w, --web`: __For Internel Use Only, will be removed in future versions.
+* `-w, --web`: __For Internel Use Only, will be removed in future versions.
 DO NOT USE.__"""
     logger = make_logger("mast.accounts")
     check_hostname = not no_check_hostname
