@@ -1,4 +1,4 @@
-"""==========================================================
+"""
 mast accounts:
 
 A set of tools for automating routine user/group
@@ -7,7 +7,7 @@ appliances.
 
 Copyright 2016, All Rights Reserved
 McIndi Solutions LLC
-=========================================================="""
+"""
 import commandr
 from mast.plugins.web import Plugin
 from mast.datapower import datapower
